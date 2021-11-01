@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBottomNavigation(){
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottomNavigationView)
-        bottomNavigationView.setOnItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home-> {
                     Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show()
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.home -> {
                     Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-                    val b = true
+                    true
                 }
                 R.id.search -> {
                     Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
@@ -150,15 +150,13 @@ class MainActivity : AppCompatActivity() {
                         val myListView = findViewById<ListView>(R.id.listView)
                         myListView.adapter = adapter
 
-//                        myListView.setOnItemClickListener { _, _, position, _ ->
-//                            var intent: Intent = Intent(this@MainActivity, Detail::class.java)
-//
-//                            // Pass the values to next activity (StationActivity)
-//                            intent!!.putExtra("id",aList[position].id)
-//                            intent!!.putExtra("title",aList[position].title)
-//
-//                            startActivity(intent)
-//                        }
+                        myListView.setOnItemClickListener { _, _, position, _ ->
+                            val intent = Intent(this@MainActivity, TodoDetailActivity::class.java)
+                            intent.putExtra("id",aList[position].id)
+                            intent.putExtra("title",aList[position].title)
+
+                            startActivity(intent)
+                        }
                     }
                 }
             }
