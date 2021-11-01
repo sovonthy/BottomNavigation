@@ -2,12 +2,17 @@ package com.test.bottomnavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -20,6 +25,35 @@ class MainActivity : AppCompatActivity() {
 
         initViewAction()
         intNavigationDrawer()
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_bottom, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.home -> {
+                val toast = Toast.makeText(applicationContext, "Home", Toast.LENGTH_SHORT)
+                toast.show()
+                true
+            }
+            R.id.search -> {
+                val toast = Toast.makeText(applicationContext, "Search", Toast.LENGTH_SHORT)
+                toast.show()
+                true
+            }
+            R.id.setting -> {
+                val toast = Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT)
+                toast.show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initViewAction(){
